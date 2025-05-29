@@ -9,10 +9,9 @@ from app.main import (
 def test_login():
     password = "mypassword"
     stored = hash_password(password)
-
     assert login("user", password, stored) is True
     assert login("user", "wrongpass", stored) is False
-    assert login("user", "password", "wrong_hash") is False  # test thêm trường hợp sai
+    assert login("user", "password", "wrong_hash") is False
 
 def test_hash_password():
     pw = "hello123"
