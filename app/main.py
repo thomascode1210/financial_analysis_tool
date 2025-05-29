@@ -1,5 +1,5 @@
 import hashlib
-import secrets  # Thêm dòng này
+import secrets
 import string
 
 def hash_password(password):
@@ -10,7 +10,31 @@ def hash_password(password):
 def generate_password(length=12):
     if length < 8:
         raise ValueError("Password too short.")
-    characters = string.ascii_letters + string.digits + "!@#$%^&*()"
+    
+    # Định nghĩa các tập ký tự
+    letters = string.ascii_letters
+    digits = string.digits
+    special_chars = "!@#$%^&*()"
+    
+    # Đảm bảo ít nhất 1 chữ cái, 1 chữ số, 1 ký tự đặc biệt
+    password = [
+        secrets.choice(letters),  # Ít nhất 1 chữ cái
+        secrets.choice(digits),   # Ít nhất 1 chữ số
+        secrets.choice(special_chars)  # Ít nhất 1 ký tự đặc biệt
+    ]
+    
+    # Tạo danh sách các ký tự còn lại ngẫu nhiên
+    remaining_length = length - len(password)
+    if remaining_length < 0:
+        raise ValueError("Length must be at least 3 to include required characters.")
+    
+    all_chars = letters + digits + special_chars
+    password.extend(secrets.choice(all_chars) for _ in range(remaining_length))
+    
+    # Xáo trộn danh sách để vị trí các ký tự là ngẫu nhiên
+    secrets.SystemRandom().shuffle(password)
+    
+    return ''.join(password)
     return ''.join(secrets.choice(characters) for _ in range(length))
 
 def login(username, password, stored_hash):
