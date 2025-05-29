@@ -46,7 +46,8 @@ if __name__ == "__main__":
     print("Generated password:", pw)
     print("Hashed password:", hash_password(pw))
 
-    result = login("admin", "password123")
+    stored_hash = hash_password("password123")
+    result = login("admin", "password123", stored_hash)
     print("Login result:", result)
 
     custom = run_custom_command("2 + 2")
