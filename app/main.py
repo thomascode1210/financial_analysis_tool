@@ -11,7 +11,7 @@ def generate_password(length=12):
     if length < 8:
         raise ValueError("Password too short.")
     characters = string.ascii_letters + string.digits + "!@#$%^&*()"
-    return ''.join(random.choice(characters) for _ in range(length))
+    return ''.join(secrets.choice(characters) for _ in range(length))
 
 def login(username, password, stored_hash):
     print(f"Logging in as {username}...")
