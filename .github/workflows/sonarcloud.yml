@@ -35,7 +35,7 @@ jobs:
         with:
           projectBaseDir: .
           args: >
-            -Dsonar.organization=thomascode1210
+            -Dsonar.organization=thomasdoan1210
             -Dsonar.projectKey=thomascode1210_financial_analysis_tool
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
