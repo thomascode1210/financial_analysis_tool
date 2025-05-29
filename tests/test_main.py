@@ -1,5 +1,4 @@
-import pytest
-from main import (
+from app.main import (
     hash_password,
     generate_password,
     login,
