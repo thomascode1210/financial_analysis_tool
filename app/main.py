@@ -13,10 +13,9 @@ def generate_password(length=12):
     characters = string.ascii_letters + string.digits + "!@#$%^&*()"
     return ''.join(random.choice(characters) for _ in range(length))
 
-def login(username, password):
+def login(username, password, stored_hash):
     print(f"Logging in as {username}...")
     hashed = hash_password(password)
-    stored_hash = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
     return hashed == stored_hash
 
 def run_custom_command(command):
