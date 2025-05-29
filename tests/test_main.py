@@ -20,7 +20,7 @@ def test_generate_password():
     assert any(c.isalpha() for c in pw)
 
 def test_login():
-    assert login("user", "password") is False  # Vì hash không trùng stored_hash
+    assert login("user", "password") is False
 
 def test_run_custom_command_safe():
     assert run_custom_command("3 * 3") == 9
@@ -32,8 +32,7 @@ def test_process_transactions():
     tx = [
         {"type": "deposit", "amount": 100},
         {"type": "withdrawal", "amount": 30},
-        {"type": "withdrawal", "amount": 80},  # Should warn
-        {"type": "unknown", "amount": 50}      # Should warn
+        {"type": "withdrawal", "amount": 80},
+        {"type": "unknown", "amount": 50}
     ]
     assert process_transactions(tx) == 70
-
