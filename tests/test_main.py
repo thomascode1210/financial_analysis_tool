@@ -24,6 +24,7 @@ def test_generate_password():
     assert len(pw) == 12
     assert any(c.isdigit() for c in pw)
     assert any(c.isalpha() for c in pw)
+    assert any(c in "!@#$%^&*()" for c in pw)
 
 def test_run_custom_command_safe():
     assert run_custom_command("3 * 3") == 9
