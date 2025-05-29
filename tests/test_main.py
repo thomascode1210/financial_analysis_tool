@@ -1,5 +1,6 @@
 from app.main import (
     login,
+    hash_password,
     generate_password,
     run_custom_command,
     process_transactions,
@@ -11,6 +12,7 @@ def test_login():
 
     assert login("user", password, stored) is True
     assert login("user", "wrongpass", stored) is False
+    assert login("user", "password", "wrong_hash") is False  # test thêm trường hợp sai
 
 def test_hash_password():
     pw = "hello123"
@@ -23,9 +25,6 @@ def test_generate_password():
     assert len(pw) == 12
     assert any(c.isdigit() for c in pw)
     assert any(c.isalpha() for c in pw)
-
-def test_login():
-    assert login("user", "password") is False
 
 def test_run_custom_command_safe():
     assert run_custom_command("3 * 3") == 9
