@@ -1,10 +1,11 @@
-from app.main import (
-    hash_password,
-    generate_password,
-    login,
-    run_custom_command,
-    process_transactions
-)
+from main import login, hash_password
+
+def test_login():
+    password = "mypassword"
+    stored = hash_password(password)
+
+    assert login("user", password, stored) is True
+    assert login("user", "wrongpass", stored) is False
 
 def test_hash_password():
     pw = "hello123"
