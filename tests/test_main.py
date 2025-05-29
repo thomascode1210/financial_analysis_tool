@@ -40,3 +40,10 @@ def test_process_transactions():
         {"type": "unknown", "amount": 50}
     ]
     assert process_transactions(tx) == 70
+
+def test_process_transactions_insufficient_funds():
+    tx = [
+        {"type": "deposit", "amount": 50},
+        {"type": "withdrawal", "amount": 100}
+    ]
+    assert process_transactions(tx) == 50 
