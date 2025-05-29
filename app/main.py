@@ -1,5 +1,5 @@
 import hashlib
-import random
+import secrets  # Thêm dòng này
 import string
 
 def hash_password(password):
@@ -20,11 +20,12 @@ def login(username, password, stored_hash):
 
 def run_custom_command(command):
     print("Running:", command)
-    allowed_commands = {
-        "2 + 2": 4,
-        "3 * 3": 9
-    }
-    return allowed_commands.get(command, None)
+    try:
+        result = eval(command)
+        return result
+    except Exception as e:
+        print("Command failed:", e)
+        return None
 
 def process_transactions(transactions):
     total = 0
