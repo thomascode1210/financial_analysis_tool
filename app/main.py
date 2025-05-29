@@ -31,11 +31,11 @@ def generate_password(length=12):
     all_chars = letters + digits + special_chars
     password.extend(secrets.choice(all_chars) for _ in range(remaining_length))
     
-    # Xáo trộn danh sách để vị trí các ký tự là ngẫu nhiên
+    # Xáo trộn danh sách tại chỗ
     secrets.SystemRandom().shuffle(password)
     
+    # Trả về chuỗi đã nối
     return ''.join(password)
-    return ''.join(secrets.choice(characters) for _ in range(length))
 
 def login(username, password, stored_hash):
     print(f"Logging in as {username}...")
