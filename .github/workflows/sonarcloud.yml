@@ -34,13 +34,12 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           projectBaseDir: .
+          args: >
+          -Dsonar.organization=thomascode1210
+          -Dsonar.projectKey=thomascode1210_financial_analysis_tool
+          -X
+          
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
-        with:
-          args: >
-            -Dsonar.organization=thomasdoan1210
-            -Dsonar.projectKey=thomascode1210_financial_analysis_tool
 
