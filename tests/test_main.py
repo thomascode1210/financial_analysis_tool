@@ -1,1 +1,39 @@
+import pytest
+from main import (
+    hash_password,
+    generate_password,
+    login,
+    run_custom_command,
+    process_transactions
+)
+
+def test_hash_password():
+    pw = "hello123"
+    hashed = hash_password(pw)
+    assert isinstance(hashed, str)
+    assert len(hashed) == 64
+
+def test_generate_password():
+    pw = generate_password(12)
+    assert len(pw) == 12
+    assert any(c.isdigit() for c in pw)
+    assert any(c.isalpha() for c in pw)
+
+def test_login():
+    assert login("user", "password") is False  # Vì hash không trùng stored_hash
+
+def test_run_custom_command_safe():
+    assert run_custom_command("3 * 3") == 9
+
+def test_run_custom_command_invalid():
+    assert run_custom_command("bad_code@@@") is None
+
+def test_process_transactions():
+    tx = [
+        {"type": "deposit", "amount": 100},
+        {"type": "withdrawal", "amount": 30},
+        {"type": "withdrawal", "amount": 80},  # Should warn
+        {"type": "unknown", "amount": 50}      # Should warn
+    ]
+    assert process_transactions(tx) == 70
 
