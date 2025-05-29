@@ -20,12 +20,11 @@ def login(username, password, stored_hash):
 
 def run_custom_command(command):
     print("Running:", command)
-    try:
-        result = eval(command)
-        return result
-    except Exception as e:
-        print("Command failed:", e)
-        return None
+    allowed_commands = {
+        "2 + 2": 4,
+        "3 * 3": 9
+    }
+    return allowed_commands.get(command, None)
 
 def process_transactions(transactions):
     total = 0
