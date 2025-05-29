@@ -1,4 +1,4 @@
-from main import login, hash_password  
+from app.main import login, hash_password
 
 def test_login():
     password = "mypassword"
